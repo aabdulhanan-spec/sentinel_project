@@ -1,0 +1,9 @@
+flowchart TD
+    A([Start / Telemetry]) --> B[Monitor Agent\nmetrics + logs]
+    B --> C[Diagnostician Agent\nRAG knowledge base]
+    C --> D[Remediation Agent\nsafety gate + simulated fix]
+    D --> E[Verify\nread-only health check]
+    E -->|Pass| F([Complete])
+    E -->|Fail and attempts remain| G[Set retry = true]
+    G --> C
+    E -->|Retry limit reached| H([Escalate / unresolved])

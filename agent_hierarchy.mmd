@@ -1,0 +1,16 @@
+flowchart TB
+    U[Administrator / Operator] --> M[MCP Standardized Gateway]
+    M --> T1[get_system_logs]
+    M --> T2[execute_system_command\nread-only / simulated]
+    M --> T3[query_knowledge_base]
+    M --> T4[query_database\nNL2SQL]
+    M --> O[LangGraph Orchestrator]
+    O --> A1[Monitor Agent]
+    O --> A2[Diagnostician Agent]
+    O --> A3[Remediation Agent]
+    O --> A4[Data Intelligence Agent]
+    A1 --> DB[(SQLite telemetry)]
+    A2 --> KB[(Knowledge Base)]
+    A3 --> SG[Safety Guardrails]
+    A4 --> DB
+    O -. traces when configured .-> LS[LangSmith]
